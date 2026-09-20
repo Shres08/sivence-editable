@@ -1,5 +1,8 @@
 
 const assetMap={};
+const remoteFont=document.createElement('style');
+remoteFont.textContent="@font-face{font-family:SivenceSans;src:url('https://sivencestudio.com/assets/SivenceSans.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}";
+document.head.append(remoteFont);
 const uri=n=>'https://sivencestudio.com/assets/'+n;
 const mediaUri=n=>!n?'':n.startsWith('/')||n.startsWith('http')?n:uri(n);
 document.querySelectorAll('[data-asset]').forEach(i=>i.src=mediaUri(i.dataset.asset));
