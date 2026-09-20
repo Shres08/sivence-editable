@@ -1,0 +1,148 @@
+media:
+  - name: images
+    label: Images
+    input: assets
+    output: /assets
+    categories: [image]
+    rename: safe
+  - name: videos
+    label: Videos
+    input: assets
+    output: /assets
+    categories: [video]
+    rename: safe
+  - name: documents
+    label: Documents
+    input: assets
+    output: /assets
+    categories: [document]
+    rename: safe
+
+content:
+  - name: site
+    label: Homepage, About & Contact
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: site_title
+        label: Browser title
+        type: string
+        required: true
+      - name: site_description
+        label: Search description
+        type: text
+        required: true
+      - name: hero
+        label: Homepage hero
+        type: object
+        fields:
+          - name: line_one
+            label: First line
+            type: string
+            required: true
+          - name: line_two
+            label: Emphasised line
+            type: string
+            required: true
+          - name: supporting_text
+            label: Supporting text
+            type: string
+          - name: video
+            label: Hero video
+            type: file
+            options:
+              media: videos
+              categories: [video]
+          - name: poster
+            label: Video poster
+            type: image
+            options:
+              media: images
+      - name: meaning
+        label: Why Sivence
+        type: object
+        fields:
+          - name: label
+            type: string
+          - name: line_one
+            type: string
+          - name: line_two
+            type: string
+          - name: description
+            type: text
+      - name: about
+        label: About page
+        type: object
+        fields:
+          - name: headline_one
+            label: First headline line
+            type: string
+          - name: headline_two
+            label: Emphasised headline line
+            type: string
+          - name: introduction
+            type: text
+          - name: summary
+            type: text
+          - name: portrait
+            type: image
+            options:
+              media: images
+      - name: contact
+        label: Contact page
+        type: object
+        fields:
+          - name: label
+            type: string
+          - name: headline
+            type: string
+          - name: supporting_text
+            type: text
+          - name: email
+            type: string
+          - name: linkedin_url
+            label: LinkedIn URL
+            type: string
+
+  - name: projects
+    label: Work projects
+    type: file
+    path: content/projects.json
+    format: json
+    list:
+      min: 1
+      collapsible:
+        collapsed: true
+        summary: "{number} / {title}"
+    operations:
+      delete: false
+    fields:
+      - name: id
+        label: Internal ID
+        type: string
+        required: true
+        readonly: true
+      - name: title
+        type: string
+        required: true
+      - name: number
+        type: string
+        required: true
+      - name: type
+        label: Project type
+        type: string
+      - name: discipline
+        type: string
+      - name: summary
+        type: text
+      - name: image
+        type: image
+        options:
+          media: images
+
+settings:
+  content:
+    merge: true
