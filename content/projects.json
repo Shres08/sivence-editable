@@ -1,0 +1,92 @@
+[
+  {
+    "id": "minimalance",
+    "title": "Minimalance",
+    "number": "01",
+    "type": "Professional work",
+    "discipline": "Brand strategy · Integrated launch",
+    "summary": "Shape the brand across launch, product and customer experience.",
+    "image": "https://sivencestudio.com/assets/minimalance-launch.webp"
+  },
+  {
+    "id": "remic",
+    "title": "REMIC",
+    "number": "02",
+    "type": "Professional work",
+    "discipline": "Paid acquisition · Conversion journey",
+    "summary": "Connect search intent to the message, page and next action.",
+    "image": "https://sivencestudio.com/assets/remic-hllqp.webp"
+  },
+  {
+    "id": "camfire",
+    "title": "Camfire",
+    "number": "03",
+    "type": "Professional work",
+    "discipline": "Leadership · Agency coordination",
+    "summary": "Align brands, teams and partners around shared priorities.",
+    "image": ""
+  },
+  {
+    "id": "xipster",
+    "title": "Xipster",
+    "number": "04",
+    "type": "Professional work",
+    "discipline": "Product messaging · Acquisition",
+    "summary": "Turn a product proposition into a clearer acquisition story.",
+    "image": "https://sivencestudio.com/assets/xipster-bull-campaign.png"
+  },
+  {
+    "id": "soaltech",
+    "title": "SoalTech",
+    "number": "05",
+    "type": "Agency engagement",
+    "discipline": "Positioning · Brand guidelines · UI/UX",
+    "summary": "Translate positioning into a brand and product experience.",
+    "image": "https://sivencestudio.com/assets/soaltech-healthcare-app-showcase.png"
+  },
+  {
+    "id": "incuse",
+    "title": "Incuse",
+    "number": "06",
+    "type": "Professional work",
+    "discipline": "Briefing · Creative workflows",
+    "summary": "Make briefs, approvals and creative delivery easier to act on.",
+    "image": "https://sivencestudio.com/assets/incuse-workflow.webp"
+  },
+  {
+    "id": "autoreel",
+    "title": "AutoReel",
+    "number": "07",
+    "type": "Growth assignment",
+    "discipline": "Audience · Activation · Paid value",
+    "summary": "Clarify the path from first use to paid value.",
+    "image": "https://sivencestudio.com/assets/autoreel-audience.jpg"
+  },
+  {
+    "id": "titanfile",
+    "title": "TitanFile",
+    "number": "08",
+    "type": "Event strategy assignment",
+    "discipline": "Event experience · Follow-up",
+    "summary": "Design event conversations for a useful follow-up.",
+    "image": "https://sivencestudio.com/assets/titanfile-event.jpg"
+  },
+  {
+    "id": "radhe",
+    "title": "Radhe Dhokla",
+    "number": "09",
+    "type": "Strategy proposal",
+    "discipline": "Growth paths · Customer experience",
+    "summary": "Evaluate which route to purchase is ready to grow.",
+    "image": "https://sivencestudio.com/assets/radhe-campaign-cravings.webp"
+  },
+  {
+    "id": "aritzia",
+    "title": "Aritzia",
+    "number": "10",
+    "type": "Individual academic project",
+    "discipline": "Customer journey · Loyalty · Media",
+    "summary": "Connect loyalty, media and follow-up as one customer journey.",
+    "image": "https://sivencestudio.com/assets/aritzia-customer-funnel.jpg"
+  }
+]
