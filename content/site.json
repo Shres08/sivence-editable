@@ -1,0 +1,31 @@
+{
+  "site_title": "Sivence — Brand, Growth & Creative Direction",
+  "site_description": "Sivence is an evidence-led marketing portfolio spanning brand, demand, customer experience and creative direction.",
+  "hero": {
+    "line_one": "Signal to strategy.",
+    "line_two": "Evidence to action.",
+    "supporting_text": "Brand, demand and customer experience—connected.",
+    "video": "https://sivencestudio.com/assets/hero-desktop.mp4",
+    "poster": "https://sivencestudio.com/assets/hero-main-poster.webp"
+  },
+  "meaning": {
+    "label": "Why Sivence",
+    "line_one": "Signal is what appears.",
+    "line_two": "Evidence earns the decision.",
+    "description": "Sivence sits between the two—turning customer, market and performance signals into clearer marketing choices."
+  },
+  "about": {
+    "headline_one": "Strategy that stays",
+    "headline_two": "close to delivery.",
+    "introduction": "Sreshta Joshi is a Toronto-based marketing professional with more than 14 years of experience across B2B and B2C.",
+    "summary": "Her experience connects brand strategy, demand, integrated campaigns, customer experience and creative direction.",
+    "portrait": "https://sivencestudio.com/assets/sreshta-portrait-color.webp"
+  },
+  "contact": {
+    "label": "Contact",
+    "headline": "Let’s have a conversation.",
+    "supporting_text": "For marketing leadership opportunities, selected collaborations or a thoughtful exchange over coffee.",
+    "email": "joshisreshta@gmail.com",
+    "linkedin_url": "https://www.linkedin.com/in/sreshtajoshi/"
+  }
+}
