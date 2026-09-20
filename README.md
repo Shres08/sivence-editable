@@ -25,3 +25,5 @@ Then open `http://localhost:8080`.
 The repository is ready for a static host such as Cloudflare Pages. No build command is required; publish the repository root.
 
 Do not point `sivencestudio.com` at this copy until the preview has been reviewed and approved.
+
+The initial preview streams the existing approved media from `sivencestudio.com`, keeping the repository lightweight. New media uploaded through Pages CMS is stored in this repository under `assets/`.
