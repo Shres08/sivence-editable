@@ -1,10 +1,10 @@
 {
-  "site_title": "Sivence — Brand, Growth & Creative Direction",
-  "site_description": "Sivence is an evidence-led marketing portfolio spanning brand, demand, customer experience and creative direction.",
+  "site_title": "Sivence — Marketing Systems for Measurable Growth",
+  "site_description": "Sivence builds evidence-led marketing systems across growth, AI operations, revenue and brand.",
   "hero": {
-    "line_one": "Signal to strategy.",
-    "line_two": "Evidence to action.",
-    "supporting_text": "Brand, demand and customer experience—connected.",
+    "line_one": "Marketing systems built for",
+    "line_two": "measurable growth.",
+    "supporting_text": "Strategy, demand generation, AI workflows and creative operations for teams that need clearer decisions and faster execution.",
     "video": "https://sivencestudio.com/assets/hero-desktop.mp4",
     "poster": "https://sivencestudio.com/assets/hero-main-poster.webp"
   },
@@ -22,9 +22,9 @@
     "portrait": "https://sivencestudio.com/assets/sreshta-portrait-color.webp"
   },
   "contact": {
-    "label": "Contact",
-    "headline": "Let’s have a conversation.",
-    "supporting_text": "For marketing leadership opportunities, selected collaborations or a thoughtful exchange over coffee.",
+    "label": "Growth diagnostic",
+    "headline": "Start with the bottleneck.",
+    "supporting_text": "Tell us what is slowing growth. We will identify what deserves attention first, what can be improved, and where a system can create leverage.",
     "email": "joshisreshta@gmail.com",
     "linkedin_url": "https://www.linkedin.com/in/sreshtajoshi/"
   }
