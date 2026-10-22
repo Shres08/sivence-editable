@@ -13,7 +13,49 @@ function controls(v){const b=v.parentElement.querySelector('[data-play]');if(b){
 document.querySelectorAll('video').forEach(v=>{['play','pause','ended'].forEach(e=>v.addEventListener(e,()=>controls(v)));v.addEventListener('play',()=>document.querySelectorAll('video').forEach(x=>{if(x!==v)x.pause()}));if(v.controls){source(v)}});
 document.querySelectorAll('[data-play]').forEach(b=>b.addEventListener('click',()=>{const v=b.closest('.film').querySelector('video');source(v);if(v.ended)v.currentTime=0;if(v.paused)v.play().catch(()=>controls(v));else v.pause()}));
 document.querySelectorAll('[data-sound]').forEach(b=>b.addEventListener('click',()=>{const v=b.closest('.film').querySelector('video');v.muted=!v.muted;b.closest('.film').classList.toggle('audible',!v.muted);b.setAttribute('aria-label',v.muted?'Unmute video':'Mute video')}));
-function route(){if(document.querySelector('dialog').open)document.querySelector('dialog').close();let target=location.hash.slice(1).replace(/-+$/,'')||'home';const anchor=target==='creative'?'creative-group':target==='assignments'?'assignments-group':null;if(anchor)target='work';if(!document.querySelector('[data-page="'+CSS.escape(target)+'"]'))target='home';document.querySelectorAll('.page').forEach(p=>p.hidden=p.dataset.page!==target);document.querySelectorAll('video').forEach(v=>v.pause());document.querySelectorAll('nav a').forEach(a=>{if(a.hash==='#'+target)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(target==='home'&&!motion.matches){const v=document.querySelector('[data-hero]');source(v);v.play().catch(()=>controls(v));heroStarted=true}if(anchor)document.getElementById(anchor).scrollIntoView();else window.scrollTo({top:0,behavior:'instant'});document.title=target==='home'?'Sivence — Marketing Systems for Measurable Growth':({remic:'REMIC',soaltech:'SoalTech',healthcan:'HealthCan',incuse:'Incuse',titanfile:'TitanFile'}[target]||target.replaceAll('-',' ').replace(/\b\w/g,c=>c.toUpperCase()))+' — Sivence'}
+function route(){
+  if(document.querySelector('dialog').open)document.querySelector('dialog').close();
+  const raw=(location.hash.slice(1).replace(/-+$/,'')||'home');
+  const sectionTargets={
+    'home-services':{page:'home',id:'home-services'},
+    'home-industries':{page:'home',id:'home-industries'}
+  };
+  let target=raw;
+  let anchor=null;
+  if(sectionTargets[raw]){target=sectionTargets[raw].page;anchor=sectionTargets[raw].id}
+  if(raw==='creative'){target='work';anchor='creative-group'}
+  if(raw==='assignments'){target='work';anchor='assignments-group'}
+  if(!document.querySelector('[data-page="'+CSS.escape(target)+'"]'))target='home';
+
+  document.querySelectorAll('.page').forEach(p=>p.hidden=p.dataset.page!==target);
+  document.querySelectorAll('video').forEach(v=>v.pause());
+
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href')||'';
+    const active=href==='#'+raw || (raw==='home'&&href==='#home');
+    if(active)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+  });
+
+  if(target==='home'&&!motion.matches){
+    const v=document.querySelector('[data-hero]');
+    source(v);v.play().catch(()=>controls(v));heroStarted=true;
+  }
+
+  if(anchor){
+    requestAnimationFrame(()=>document.getElementById(anchor)?.scrollIntoView({behavior:motion.matches?'auto':'smooth',block:'start'}));
+  }else{
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  const titles={
+    home:'Sivence — Marketing Systems for Measurable Growth',
+    work:'Selected Work — Sivence',
+    about:'About — Sivence',
+    contact:'Growth Diagnostic — Sivence',
+    'ai-website-system':'AI Website System — Sivence'
+  };
+  document.title=titles[target]||({remic:'REMIC',soaltech:'SoalTech',healthcan:'HealthCan',incuse:'Incuse',titanfile:'TitanFile'}[target]||target.replaceAll('-',' ').replace(/\b\w/g,c=>c.toUpperCase()))+' — Sivence';
+}
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();document.querySelector('main').focus();document.querySelector('main').scrollIntoView()});window.addEventListener('hashchange',route);route();
 document.querySelectorAll('[data-size]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.viewport').classList.toggle('mobile',b.dataset.size==='mobile');document.querySelectorAll('[data-size]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));
 const dialog=document.querySelector('dialog');let gallery=[],index=0,trigger;
@@ -134,3 +176,17 @@ async function loadEditableContent(){
 }
 function setTextIn(parent,selector,value){const node=parent.querySelector(selector);if(node&&value!==undefined)node.textContent=value}
 loadEditableContent();
+
+/* Homepage V2 progressive motion: subtle and disabled for reduced-motion users. */
+const revealTargets=document.querySelectorAll('.home-v2 .v2-section-head,.home-v2 .v2-problem-grid>a,.home-v2 .v2-system-list>article,.home-v2 .v2-method-track>div,.home-v2 .v2-work-card,.home-v2 .v2-ai-grid>article,.home-v2 .v2-industry-grid>article,.home-v2 .v2-insight-grid>a,.home-v2 .v2-founder-grid>*');
+if(!motion.matches&&'IntersectionObserver' in window){
+  revealTargets.forEach(el=>el.classList.add('v2-reveal'));
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+    })
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  revealTargets.forEach(el=>observer.observe(el));
+}else{
+  revealTargets.forEach(el=>el.classList.add('is-visible'));
+}
