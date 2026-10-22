@@ -521,3 +521,5 @@ body:has(dialog[open]){overflow:hidden}
   .v2-principles span:last-child{border-bottom:0}
   .v2-final{padding:90px 6% 110px}
 }
+
+@container(max-width:600px){.site nav a[href="#about"]{display:none}.site nav{gap:12px;font-size:12px}.site nav .nav-cta{padding:8px 9px}}
