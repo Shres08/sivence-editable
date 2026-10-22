@@ -564,3 +564,11 @@ body:has(dialog[open]){overflow:hidden}
 @container(max-width:520px){
   .ai-guide-failures,.ai-example-grid{grid-template-columns:1fr}
 }
+
+.home-v2 .v2-reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.home-v2 .v2-reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .home-v2 .v2-reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .home-v2 .v2-primary,.home-v2 .v2-secondary,.v2-work-card,.v2-problem-grid a{transition:none!important}
+}
