@@ -1,0 +1,175 @@
+/* Sivence artwork lighting: page colour comes from the work, not filler shapes. */
+@property --wash-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #9c8064;
+}
+@property --wash-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #df8849;
+}
+
+:root {
+  --ambient-amount: 18%;
+  --ambient-secondary: 12%;
+}
+html[data-theme="dark"] {
+  --ambient-amount: 31%;
+  --ambient-secondary: 21%;
+}
+
+.ambient-zone {
+  isolation: isolate;
+  --wash-x: 0px;
+  --wash-y: 0px;
+  transition: --wash-a .9s ease, --wash-b .9s ease;
+}
+/* Position the static surfaces for their wash without overriding the sticky
+   project stages (home and Work). */
+.ambient-zone:not(.theatre-pin):not(.work-stage) { position: relative; }
+.ambient-zone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 54% 63% at 38% 54%,
+      color-mix(in srgb, var(--wash-a) var(--ambient-amount), transparent), transparent 76%),
+    radial-gradient(ellipse 48% 56% at 75% 38%,
+      color-mix(in srgb, var(--wash-b) var(--ambient-secondary), transparent), transparent 78%);
+  filter: blur(30px);
+  transform: translate3d(var(--wash-x), var(--wash-y), 0);
+  transition: opacity .8s ease, transform 1.1s ease;
+}
+.ambient-zone.is-lit::before { opacity: 1; }
+
+/* Campaigns: the wash sits behind full-proportion artwork and never on type. */
+body[data-ambient="case"] .case-cover.ambient-zone {
+  --ambient-amount: 27%;
+  --ambient-secondary: 19%;
+}
+body[data-ambient="case"] .case-cover.ambient-zone::before {
+  inset: 3% 5%;
+  filter: blur(44px);
+}
+body[data-ambient="case"] .case-artifacts .artifact-grid.ambient-zone::before {
+  background:
+    radial-gradient(ellipse 55% 68% at 27% 48%,
+      color-mix(in srgb, var(--wash-a) var(--ambient-amount), transparent), transparent 76%),
+    radial-gradient(ellipse 50% 65% at 78% 56%,
+      color-mix(in srgb, var(--wash-b) var(--ambient-secondary), transparent), transparent 80%);
+}
+body[data-ambient="case"] .case-artifacts .case-rail.ambient-zone::before {
+  inset: 0 3%;
+  filter: blur(24px);
+}
+body[data-ambient="case"] .case-artifacts .artifact-image {
+  z-index: 1;
+}
+
+/* The selected-work stage changes tone as the selected project changes. */
+body[data-ambient="work"] .work-stage.ambient-zone,
+body[data-ambient="home"] .theatre-pin.ambient-zone {
+  --ambient-amount: 32%;
+  --ambient-secondary: 23%;
+}
+body[data-ambient="work"] .work-stage.ambient-zone::before,
+body[data-ambient="home"] .theatre-pin.ambient-zone::before {
+  background:
+    radial-gradient(ellipse 58% 78% at 68% 58%,
+      color-mix(in srgb, var(--wash-a) var(--ambient-amount), transparent), transparent 75%),
+    radial-gradient(ellipse 52% 58% at 76% 15%,
+      color-mix(in srgb, var(--wash-b) var(--ambient-secondary), transparent), transparent 80%);
+  filter: blur(38px);
+}
+body[data-ambient="home"] .theatre-pin.ambient-zone::before { inset: 0; }
+body[data-ambient="home"] .theatre-pin .theatre-stage { z-index: 1; }
+
+/* Notes retain a clear reading surface; only illustration edges pick up colour. */
+body[data-ambient="thinking"] .method-feature.ambient-zone::before,
+body[data-ambient="article"] .article-illustration.ambient-zone::before,
+body[data-ambient="thinking"] .article-illustration.ambient-zone::before,
+body[data-ambient="home"] .think.ambient-zone::before {
+  inset: 5% 0;
+  background: radial-gradient(ellipse 68% 70% at 74% 52%,
+    color-mix(in srgb, var(--wash-a) 14%, transparent), transparent 78%);
+  filter: blur(45px);
+}
+body[data-ambient="article"] .article-diagram.ambient-zone::before {
+  background: radial-gradient(ellipse 70% 68% at 78% 75%,
+    color-mix(in srgb, var(--wash-b) 8%, transparent), transparent 80%);
+}
+body[data-ambient="thinking"] .method-film.ambient-zone::before {
+  inset: 8% 0;
+  filter: blur(45px);
+}
+body[data-ambient="thinking"] .decision-card,
+body[data-ambient="home"] .decision-card {
+  transition: transform .45s ease, box-shadow .6s ease;
+}
+body[data-ambient="thinking"] .decision-card:hover,
+body[data-ambient="thinking"] .decision-card:focus-visible,
+body[data-ambient="home"] .decision-card:hover,
+body[data-ambient="home"] .decision-card:focus-visible {
+  box-shadow: 0 22px 48px color-mix(in srgb, var(--wash-a) 15%, transparent);
+}
+
+/* Portrait, form and independent work receive their own quieter placement. */
+body[data-ambient="about"] .about-hero figure.ambient-zone::before {
+  inset: -7% -9%;
+  background:
+    radial-gradient(ellipse 68% 72% at 63% 53%,
+      color-mix(in srgb, var(--wash-a) 23%, transparent), transparent 78%),
+    radial-gradient(ellipse 42% 42% at 24% 81%,
+      color-mix(in srgb, var(--wash-b) 11%, transparent), transparent 80%);
+  filter: blur(35px);
+}
+body[data-ambient="contact"] .contact-form.ambient-zone::before {
+  inset: -5% -8%;
+  background: radial-gradient(ellipse 75% 85% at 76% 26%,
+    color-mix(in srgb, var(--wash-a) 12%, transparent), transparent 80%);
+  filter: blur(42px);
+}
+body[data-ambient="lab"] .lab-grid.ambient-zone::before {
+  background: radial-gradient(ellipse 75% 65% at 51% 46%,
+    color-mix(in srgb, var(--wash-a) 9%, transparent), transparent 78%);
+}
+body[data-ambient="lab"] .lab-card:hover>div,
+body[data-ambient="lab"] .lab-card:focus-visible>div {
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--wash-a) 20%, transparent);
+}
+body[data-ambient="lab"] .lab-card>div { transition: box-shadow .5s ease; }
+body[data-ambient="lab-detail"] .lab-detail>.artifact.ambient-zone::before,
+body[data-ambient="lab-detail"] .lab-detail>.film.ambient-zone::before {
+  inset: -5% -6%;
+  filter: blur(43px);
+}
+body[data-project="paintings"] .exhibit-stage.ambient-zone::before,
+body[data-ambient="home"] .paint-feature.ambient-zone::before {
+  background:
+    radial-gradient(ellipse 58% 72% at 35% 49%,
+      color-mix(in srgb, var(--wash-a) 15%, transparent), transparent 78%),
+    radial-gradient(ellipse 40% 55% at 78% 70%,
+      color-mix(in srgb, var(--wash-b) 10%, transparent), transparent 80%);
+  filter: blur(48px);
+}
+
+@media (max-width: 760px) {
+  body .ambient-zone::before { filter: none !important; }
+  body[data-ambient="case"] .case-artifacts .artifact-grid.ambient-zone::before {
+    background: radial-gradient(ellipse 85% 68% at 50% 52%,
+      color-mix(in srgb, var(--wash-a) 13%, transparent), transparent 82%);
+  }
+  body[data-ambient="home"] .theatre-pin.ambient-zone::before,
+  body[data-ambient="work"] .work-stage.ambient-zone::before {
+    background: radial-gradient(ellipse 92% 70% at 50% 72%,
+      color-mix(in srgb, var(--wash-a) 25%, transparent), transparent 80%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-zone { transition: none; }
+  .ambient-zone::before { transition: none; transform: none; }
+}

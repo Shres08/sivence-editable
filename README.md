@@ -1,29 +1,21 @@
-# Sivence editable website
+# Sivence Studio
 
-This repository is the editable copy of Sivence. The current live website remains separate until this copy is approved.
+Production source for https://sivencestudio.com. Human psychology artwork and customer-signal interactions are developed on `human-algorithm`.
 
-## Edit content
+## Local preview
 
-1. Open [Pages CMS](https://app.pagescms.org/) and sign in with GitHub.
-2. Select this repository.
-3. Use **Homepage, About & Contact** for the principal copy and **Work projects** for project cards.
-4. Use the Media area to replace images, videos or documents.
-5. Save. Each save creates a versioned GitHub commit and triggers the connected site preview.
+Run `python3 restore_large_media.py` once after cloning, then `python3 -m http.server 8080 --directory dist` and open http://localhost:8080/. No dependencies or build step are required. `.openai/hosting.json` declares `dist` as the deployed output.
 
-## Preview locally
+## Editing
 
-Run a local static server from the repository root. For example:
+`dist/index.html` is the homepage; `homepage.html` is its authoring template. Update both when editing homepage markup. New interaction code is isolated in `dist/assets/human-algorithm.js` and `human-algorithm.css`. The original sculpture lives in `dist/lab/spatial-studio/index.html` and is embedded in Customer Signals. All portfolio pages and media remain in `dist`. Root-level files from the older editable prototype are retained for reference and are not deployed.
 
-```bash
-python3 -m http.server 8080
-```
+## Validation
 
-Then open `http://localhost:8080`.
+`python3 verify_portfolio.py` checks all canonical routes, navigation, assets, metadata and media. `python3 verify_human_algorithm.py` checks preserved homepage copy, section order, the relocated sculpture, accessibility and source integrity. Use `qa/responsive.html` temporarily inside `dist` to check 375, 390, 768 and 1440 pixel viewports; remove it before publication.
 
-## Publishing
+## Interaction behaviour
 
-The repository is ready for a static host such as Cloudflare Pages. No build command is required; publish the repository root.
+Nine glass fragments assemble once on arrival. Mouse, touch and keyboard reveal individual insights. Sounds are silent until explicitly enabled and synthesized locally through Web Audio. Motion respects the operating system preference and the pause control. The image fallback remains visible when scripting is disabled. The original sculpture is loaded when its section enters view, including its non-WebGL fallback.
 
-Do not point `sivencestudio.com` at this copy until the preview has been reviewed and approved.
-
-The initial preview streams the existing approved media from `sivencestudio.com`, keeping the repository lightweight. New media uploaded through Pages CMS is stored in this repository under `assets/`.
+The large original catalogue is stored as lossless binary parts in the GitHub branch to fit the connector transfer limit. `restore_large_media.py` reassembles it and verifies its SHA-256 before use. The live website serves the unchanged, complete PDF.

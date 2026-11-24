@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+
+# Restored losslessly from source-media by restore_large_media.py
+dist/assets/minimalance-catalogue.pdf

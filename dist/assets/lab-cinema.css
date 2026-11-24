@@ -1,0 +1,165 @@
+/* Four real films move through one stage as the visitor scrolls. */
+.lab-spotlight.lab-cinema {
+  display: block;
+  height: 410svh;
+  padding: 0;
+  overflow: visible;
+  background: #101512;
+  color: #f5f5ef;
+}
+.lab-cinema-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(260px, 31%) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  column-gap: clamp(28px, 5vw, 100px);
+  padding: clamp(72px, 8vw, 120px) clamp(22px, 4vw, 68px) clamp(22px, 3vw, 42px);
+  box-sizing: border-box;
+  isolation: isolate;
+}
+.lab-cinema-pin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 56% 70% at 73% 47%, #415d6840, transparent 75%);
+}
+.lab-cinema-heading {
+  align-self: center;
+  min-width: 0;
+}
+.lab-cinema-heading .eyebrow { color: var(--orange); }
+.lab-cinema-heading h2 {
+  font-size: clamp(53px, 6.1vw, 105px);
+  line-height: .91;
+  letter-spacing: -.07em;
+  font-weight: 550;
+  margin: 31px 0;
+}
+.lab-cinema-heading h2 em { color: var(--orange); font-style: normal; }
+.lab-cinema-heading > p:not(.eyebrow) {
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.48;
+  color: #c7c9c0;
+  max-width: 420px;
+}
+.lab-cinema-heading > a {
+  display: inline-block;
+  margin-top: 28px;
+  border-bottom: 1px solid var(--orange);
+  padding-bottom: 7px;
+  font-size: 15px;
+}
+.lab-cinema-stage {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 100%;
+  height: min(70svh, 680px);
+  min-height: 0;
+}
+.cinema-panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+  pointer-events: none;
+  transition: opacity .5s ease, transform .6s ease, visibility .5s;
+}
+.cinema-panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+.cinema-screen {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  background: #111d20;
+  box-shadow: 0 28px 75px #0005;
+}
+.cinema-screen video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+.cinema-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-top: 1px solid #626c65;
+  padding-top: 17px;
+  margin-top: 17px;
+}
+.cinema-caption span { color: #aebbb3; font-size: 10px; letter-spacing: .1em; white-space: nowrap; }
+.cinema-caption h3 { font-size: clamp(20px, 2vw, 30px); line-height: 1.1; margin: 0; letter-spacing: -.04em; }
+.cinema-caption a { margin-left: auto; white-space: nowrap; color: #fff; border-bottom: 1px solid var(--orange); font-size: 13px; padding-bottom: 4px; }
+.lab-cinema-nav {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+.lab-cinema-nav button {
+  border: 0;
+  color: #bcc5bf;
+  background: transparent;
+  padding: 8px 2px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.lab-cinema-nav button[aria-current] { color: var(--orange); }
+.lab-cinema-nav button:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.lab-cinema-progress { width: min(8vw, 76px); height: 2px; background: #657067; margin: 0 4px; }
+.lab-cinema-progress i { display: block; width: 100%; height: 100%; background: var(--orange); transform: scaleX(var(--film-progress, .25)); transform-origin: left; transition: transform .45s; }
+
+@media (max-width: 760px) {
+  .lab-spotlight.lab-cinema { height: 410svh; }
+  .lab-cinema-pin {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 74px 22px 20px;
+  }
+  .lab-cinema-heading { align-self: stretch; flex: none; }
+  .lab-cinema-heading .eyebrow { font-size: 10px; margin: 0 0 9px; }
+  .lab-cinema-heading h2 { font-size: clamp(40px, 9vw, 64px); margin: 0 0 10px; }
+  .lab-cinema-heading h2 br { display: none; }
+  .lab-cinema-heading > p:not(.eyebrow) { font-size: 12px; line-height: 1.35; max-width: 600px; margin: 0; }
+  .lab-cinema-heading > a { display: none; }
+  .lab-cinema-stage { flex: 1; align-self: stretch; width: 100%; height: auto; min-height: 0; }
+  .cinema-caption { gap: 8px; flex-wrap: wrap; margin-top: 10px; padding-top: 10px; }
+  .cinema-caption span { width: 100%; font-size: 9px; }
+  .cinema-caption h3 { font-size: clamp(18px, 5vw, 25px); }
+  .cinema-caption a { font-size: 11px; }
+  .lab-cinema-nav { align-self: stretch; justify-content: space-between; gap: 8px; flex: none; }
+  .lab-cinema-progress { flex: 1; width: auto; }
+  .lab-cinema-nav button { min-width: 29px; }
+}
+@media (max-height: 690px) and (max-width: 760px) {
+  .lab-cinema-pin { gap: 8px; padding-top: 60px; padding-bottom: 10px; }
+  .lab-cinema-heading h2 { font-size: 38px; }
+  .lab-cinema-heading > p:not(.eyebrow) { font-size: 11px; }
+  .cinema-caption { margin-top: 6px; padding-top: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-spotlight.lab-cinema { height: auto; }
+  .lab-cinema-pin { position: relative; height: auto; display: block; overflow: visible; padding-block: 80px; }
+  .lab-cinema-stage { height: auto; display: grid; gap: 38px; margin-top: 40px; }
+  .cinema-panel { position: relative; display: grid; opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: none; }
+  .cinema-screen { aspect-ratio: 16 / 9; }
+  .lab-cinema-nav { display: none; }
+}
